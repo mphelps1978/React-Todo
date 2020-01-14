@@ -1,5 +1,5 @@
 // ToDo: Style the dang thing
-// ToDo: Fix Persistency Bug (Currently clears out localStorage completely on "clearCompleted")
+
 import React from "react";
 import TodoList from "./components/TodoComponents/TodoList";
 import TodoForm from "./components/TodoComponents/TodoForm";
