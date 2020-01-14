@@ -7,9 +7,19 @@ import "./components/TodoComponents/Todo.css";
 
 const toDoItems = [
   {
-    task: "",
-    id: "",
-    completed: "",
+    task: "Learn React",
+    id: "1",
+    completed: false,
+  },
+  {
+    task: "Learn Node",
+    id: "2",
+    completed: false,
+  },
+  {
+    task: "Learn Python",
+    id: "3",
+    completed: false,
   },
 ];
 
@@ -73,15 +83,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
+      <div className="App">
+        <div className="header">
+          <h1>Things I need to Do</h1>
+          <TodoForm addItem={this.addItem} persistData={this.persistData} />
+        </div>
         <TodoList
           toDoList={this.state.toDoList}
           toggleItem={this.toggleItem}
           clearCompleted={this.clearCompleted}
         />
-
-        <TodoForm addItem={this.addItem} persistData={this.persistData} />
       </div>
     );
   }
