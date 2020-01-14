@@ -21,6 +21,7 @@ class TodoForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.addItem(this.state.todoText);
+    this.props.persistData(this.state.todoText);
   };
 
   render() {

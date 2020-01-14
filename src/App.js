@@ -5,9 +5,9 @@ import "./components/TodoComponents/Todo.css";
 
 const toDoItems = [
   {
-    task: "Test1",
-    id: "1",
-    completed: false,
+    task: "",
+    id: "",
+    completed: "",
   },
 ];
 
@@ -47,22 +47,26 @@ class App extends React.Component {
     this.setState({
       toDoList: [...this.state.toDoList, newItem],
     });
-    console.log("This is toDoList after addItem: ", this.state.toDoList);
+    // console.log("This is toDoList after addItem: ", this.state.toDoList);
   };
 
   // Method to clear the completed items out
   clearCompleted = () => {
     const filteredList = this.state.toDoList.filter(item => !item.completed);
-    console.log("filtered list: ", filteredList);
+    const completedList = this.state.toDoList.filter(item => item.completed);
+    // console.log("filtered list: ", filteredList);
     this.setState({
       toDoList: filteredList,
     });
 
-    // console.log("toDoList before clearCompleted ", this.state.toDoList);
-    // this.setState({
-    //   toDoItems: this.state.toDoList.filter(item => item.completed === true),
-    // });
-    // console.log("toDoList after clearCompleted: ", this.state.toDoList);
+    // remove the items from persistent storage
+    localStorage.removeItem("storedData", completedList);
+  };
+
+  //persist the data into localStorage
+  persistData = () => {
+    const storedData = JSON.stringify(this.state.toDoList);
+    localStorage.setItem("storedData", storedData);
   };
 
   render() {
@@ -75,7 +79,7 @@ class App extends React.Component {
           clearCompleted={this.clearCompleted}
         />
 
-        <TodoForm addItem={this.addItem} />
+        <TodoForm addItem={this.addItem} persistData={this.persistData} />
       </div>
     );
   }
